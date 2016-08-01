@@ -1,0 +1,40 @@
+#ash {
+	width : 13%;
+	height: 18%;
+	position: absolute;
+	top: 550;
+}
+
+#pokeball {
+    width: 5%;
+    height: 7%;
+    
+    position: absolute;
+    top: 625;
+}
+#pokemon{
+	width : 10%;
+	height: 15%;
+	position: absolute;
+	top: 590;
+	left: 800;
+}
+
+
+.hidden{
+	display: none;
+}
+.show{
+	display: inline;
+}
+.background{
+	background : url("images/background.png") no-repeat;
+	background-size: 5% 5%;
+  /*width: 1000px;
+  height: 1000px;
+  background-position: 50% 100%;
+  background-image: url(images/background.png);
+  background-size: 2000px;
+*/
+}
+
