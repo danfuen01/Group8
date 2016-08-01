@@ -3,7 +3,7 @@ function setupHandlers() {
     	if (e.keyCode === 32) {
 
        	 	pokeballFire();
-       	 	overlap();
+       	 	// overlap();
 
     	}
 	}
@@ -28,18 +28,18 @@ function pokeballFire(){
 
 }
 
-function overlap(){
-	console.log("called overlap");
-	var hit = false;
-	while(!hit){
-		if (pokeball.x < pokemon.x + pokemon.width &&
-   pokeball.x + pokeball.width > pokemon.x &&
-   pokeball.y < pokemon.y + pokemon.height &&
-   pokeball.height + pokeball.y > pokemon.y) {
-			console.log("They intersected")
-			hit = true
-	}
-}
-}
+// function overlap(){
+// 	console.log("called overlap");
+// 	var hit = false;
+// 	while(!hit){
+// 		if (pokeball.x < pokemon.x + pokemon.width &&
+//    pokeball.x + pokeball.width > pokemon.x &&
+//    pokeball.y < pokemon.y + pokemon.height &&
+//    pokeball.height + pokeball.y > pokemon.y) {
+// 			console.log("They intersected")
+// 			hit = true
+// 	}
+// }
+// }
 
 $(document).ready(setupHandlers);
