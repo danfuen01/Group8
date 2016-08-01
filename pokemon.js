@@ -3,7 +3,7 @@ function setupHandlers() {
     	if (e.keyCode === 32) {
 
        	 	pokeballFire();
-       	 	// overlap();
+       	 	overlap();
 
     	}
 	}
@@ -36,6 +36,7 @@ function overlap(){
    pokeball.x + pokeball.width > pokemon.x &&
    pokeball.y < pokemon.y + pokemon.height &&
    pokeball.height + pokeball.y > pokemon.y) {
+			console.log("They intersected")
 			hit = true
 	}
 }
