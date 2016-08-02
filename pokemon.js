@@ -1,14 +1,11 @@
 
 
 function setupHandlers() {
-	pokemonSpawn();
+	
 	checkHit();
 	document.body.onkeyup = function(e){
     	if (e.keyCode === 32) {//if spacebar is pushed
-    		
        	 	pokeballFire();
-       	 	
-
     	}
 	}
 }
@@ -24,26 +21,32 @@ function checkHit(){
    rect1.height + rect1.y > rect2.y) {
         hit = true;
     	console.log("HIT")
+    }
 }
-}
-
-
 	function pokeballFire(){
+		pokemonSpawn();
 
 		var ball = document.getElementById("pokeball");
-		var pos = 60;
-		var id = setInterval(frame,5);
-		function frame() {
-			document.getElementById("pokeball").className = 'show';//pokeball appears
-			if(pos == 1450){
-				clearInterval(id);
-			}else{
-				pos++;
-				ball.style.left = pos + 'px';//changes pokeball position
-			}
-		}
+		// $('#pokeball').show();
+		$("#pokeball").animate({left: "+=1000"}, 3000);
+		// $('#pokeball').hide();
+		// $('#pokeball').animate({left: "-=1000"}, 3000);
 
 	}
+		// var pos = 60;
+		// var id = setInterval(frame,5);
+		// function frame() {
+		// 	document.getElementById("pokeball").className = 'show';//pokeball appears
+		// 	if(pos == 1450){
+		// 		ball.className = 'hide';
+		// 		clearInterval(id);
+
+		// 	}else{
+		// 		pos++;
+		// 		ball.style.left = pos + 'px';//changes pokeball position
+		// 	}
+		// }
+
 
 function pokemonSpawn(){
 	var pokemonIds = ["squirtle", "charmander", "bulbasaur"];
