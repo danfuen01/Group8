@@ -5,7 +5,7 @@ function setupHandlers() {
 	checkHit();
 	document.body.onkeyup = function(e){
     	if (e.keyCode === 32) {//if spacebar is pushed
-
+    		
        	 	pokeballFire();
        	 	
 
@@ -46,24 +46,12 @@ function checkHit(){
 	}
 
 function pokemonSpawn(){
-	// var pokemonIds = ["squirtle", "charmander", "bulbasaur"];
-	// var thisID = pokemonIds[Math.floor(Math.random() * (4))];//selects a random pokemon
-	// console.log(thisID);
-	var pokemon = document.getElementById("bulbasaur");
-	var pos = 60;
-	var id = setInterval(frame,5);
-	function frame() {
-		document.getElementById("bulbasaur").className = 'show';//pokemon appears
-		
-		if(pos == 1450){
-			clearInterval(id);
+	var pokemonIds = ["squirtle", "charmander", "bulbasaur"];
+	var thisID = pokemonIds[Math.floor(Math.random() * (4))];//selects a random pokemon
+	console.log(thisID);
+	// thisID.className = 'show';
+    $("#" + thisID).animate({left: "-=1000"}, 3000);
+};
 
-		}else{
-			pos++;
-			document.getElementById("bulbasaur").style.right = pos + 'px';//change postion
-		}
-	}
-
-}
 
 $(document).ready(setupHandlers);
