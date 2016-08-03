@@ -55,12 +55,14 @@ function catchPokemon(){
 
 function pokemonTouch(){
 	if(($("#" + spawnedPokemon).is(":visible"))){
-		if($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8 === $("#ash").offset().left){
-			console.log("Game Over");
-			$('#ash').hide();
-			$('#pokeball').hide();
+		if($("#ash").position().top === 550){
+			if($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8 === $("#ash").offset().left){
+				console.log("Game Over");
+				$('#ash').hide();
+				$('#pokeball').hide();
+			}
+		}
 		}
 	}
-}
 
 $(document).ready(setupHandlers);
