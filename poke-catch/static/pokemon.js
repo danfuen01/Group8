@@ -54,25 +54,26 @@ function pokeballFire(){
 	var position = $('#' + spawnedPokemon).position()
 	console.log(position.left);
 	halfwayDistance = (position.left - 10)/2;
-	var halwayTime = ((halfwayDistance - 10)*1900)/1550;
-	setTimeout(catchPokemon, halwayTime);
+	var halfwayTime = ((halfwayDistance - 10)*1900)/1550;
+	setTimeout(catchPokemon, halfwayTime);
 	var ball = document.getElementById("pokeball");
 	$("#pokeball").animate({left: "+=1500"}, 1550);
 	
 }
 
 function pokeballRespawn(){
-	$("#pokeball").animate({left: "+=" + halfwayDistance}, 0);
+	$("#pokeball").css('left', 30);
 	$("#pokeball").show();
-
 }
 
 function catchPokemon(){
+	console.log("caught pokenon")
 	$('#' + spawnedPokemon).hide();
+	$("#pokeball").stop();
 	$('#pokeball').hide();
+	console.log($('#pokeball'))
 	pokeballRespawn();
-	document.getElementById("pokeball").style.left =10;
-	score = score + 1;
+	// score = score + 1;
 }
 
 function pokemonTouch(){
