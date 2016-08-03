@@ -1,4 +1,3 @@
-
 var spawnedPokemon = "";
 
 function setupHandlers() {
@@ -24,12 +23,12 @@ function pokemonSpawn(){
 
 }
 
-// function ashJump(){
-// 	$("#ash").animate({top: "-=300"}, 200);
-// 	$("#pokeball").animate({top: "-=300"}, 200);
-// 	$("#ash").animate({top: "+=300"}, 200);
-// 	$("#pokeball").animate({top: "+=300"}, 200);
-// }
+function ashJump(){
+	$("#ash").animate({top: "-=300"}, 200);
+	$("#pokeball").animate({top: "-=300"}, 200);
+	$("#ash").animate({top: "+=300"}, 200);
+	$("#pokeball").animate({top: "+=300"}, 200);
+}
 
 function pokeballFire(){
 	$('h1').hide();
