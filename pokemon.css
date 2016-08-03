@@ -5,6 +5,10 @@
 	top: 550;
 }
 
+#gameOver {
+	font-size: 1;
+}
+
 #pokeball {
     width: 5%;
     height: 7%;

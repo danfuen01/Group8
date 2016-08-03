@@ -1,6 +1,7 @@
 var spawnedPokemon = "";
 
 function setupHandlers() {
+	$('#gameOver').hide();
 	pokemonSpawn();
 	var position = $('#' + spawnedPokemon).position()
 	setTimeout(pokemonTouch, 1860);
@@ -15,11 +16,14 @@ function setupHandlers() {
 
 function pokemonSpawn(){
 	var pokemonIds = ["squirtle", "charmander", "bulbasaur", "pikachu"];
+	// for(i = 0; i < 10; i++){
 	var thisID = pokemonIds[Math.floor(Math.random() * (4))];//selects a random pokemon
 	spawnedPokemon = thisID;
 	console.log(thisID);
-	// thisID.className = 'show';
-    $("#" + thisID).animate({left: "-=2000"}, 3000);
+		// thisID.className = 'show';
+   	$("#" + thisID).animate({left: "-=2000"}, 3000);
+  	// setTimeout(pokemonSpawn, Math.floor(Math.random() * (2000)))
+   	 // }
 
 }
 
@@ -57,7 +61,8 @@ function pokemonTouch(){
 	if(($("#" + spawnedPokemon).is(":visible"))){
 		if($("#ash").position().top === 550){
 			if($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8 === $("#ash").offset().left){
-				console.log("Game Over");
+				$('#gameOver').show();
+				$('#gameOver').animate({fontSize: 200},1500);
 				$('#ash').hide();
 				$('#pokeball').hide();
 			}
