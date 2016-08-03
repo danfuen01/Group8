@@ -1,10 +1,17 @@
 var spawnedPokemon = "";
+var halfwayDistance = 0;
+var pokemonIds = ["squirtle", "charmander", "bulbasaur", "pikachu"];
+var score = 0;
+var highscore = 0;
 
 function setupHandlers() {
 	$('#gameOver').hide();
+	$('#squirtle').hide();
+	$('#bulbasaur').hide();
+	$('#pikachu').hide();
+	$('#charmander').hide();
 	pokemonSpawn();
 	var position = $('#' + spawnedPokemon).position()
-	setTimeout(pokemonTouch, 1860);
 	document.body.onkeyup = function(e){
     	if (e.keyCode === 32) {//if spacebar is pushed
        	 	pokeballFire();
@@ -15,15 +22,23 @@ function setupHandlers() {
 }
 
 function pokemonSpawn(){
-	var pokemonIds = ["squirtle", "charmander", "bulbasaur", "pikachu"];
-	// for(i = 0; i < 10; i++){
+	setTimeout(pokemonTouch, 1860);
 	var thisID = pokemonIds[Math.floor(Math.random() * (4))];//selects a random pokemon
 	spawnedPokemon = thisID;
 	console.log(thisID);
+	$("#" + spawnedPokemon).show()
 		// thisID.className = 'show';
    	$("#" + thisID).animate({left: "-=2000"}, 3000);
   	// setTimeout(pokemonSpawn, Math.floor(Math.random() * (2000)))
    	 // }
+   	 setTimeout(pokemonRespawn,3000);
+
+}
+
+function pokemonRespawn(){
+	$("#" + spawnedPokemon).hide()
+   	$("#" + spawnedPokemon).animate({left: "+=2000"}, 1);
+   	setTimeout(pokemonSpawn, Math.floor(Math.random() * (300)));
 
 }
 
@@ -38,27 +53,31 @@ function pokeballFire(){
 	$('h1').hide();
 	var position = $('#' + spawnedPokemon).position()
 	console.log(position.left);
-	var halfway = (position.left - 10)/2;
-	var halwayTime = ((halfway - 10)*1900)/1500;
+	halfwayDistance = (position.left - 10)/2;
+	var halwayTime = ((halfwayDistance - 10)*1900)/1550;
 	setTimeout(catchPokemon, halwayTime);
-		
-
 	var ball = document.getElementById("pokeball");
-	$("#pokeball").animate({left: "+=1000"}, 1500);
+	$("#pokeball").animate({left: "+=1500"}, 1550);
+	
+}
+
+function pokeballRespawn(){
+	$("#pokeball").animate({left: "+=" + halfwayDistance}, 0);
+	$("#pokeball").show();
+
 }
 
 function catchPokemon(){
-	$('#' + spawnedPokemon).stop();
-	console.log("sucess");
-	console.log($("#" + spawnedPokemon).offset().left);
-	console.log($("#pokeball").offset().left);
 	$('#' + spawnedPokemon).hide();
-
+	$('#pokeball').hide();
+	pokeballRespawn();
 	document.getElementById("pokeball").style.left =10;
+	score = score + 1;
 }
 
 function pokemonTouch(){
 	if(($("#" + spawnedPokemon).is(":visible"))){
+		console.log(spawnedPokemon);
 		if($("#ash").position().top === 550){
 			if($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8 === $("#ash").offset().left){
 				$('#gameOver').show();

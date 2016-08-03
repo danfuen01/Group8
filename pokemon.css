@@ -7,6 +7,7 @@
 
 #gameOver {
 	font-size: 1;
+	color: red;
 }
 
 #pokeball {
@@ -15,7 +16,7 @@
     
     position: absolute;
     top: 625;
-    left: 10;
+    left: 30;
 }
 
 .pokemon{
@@ -23,7 +24,7 @@
 	height: 15%;
 	position: absolute;
 	top: 590;
-	left: 1250;
+	left: 1500;
 }
 
 
@@ -47,3 +48,9 @@ h2{
 	text-align: center;
 }
 
+p{
+	text-align: center;
+	font-family:Arial;
+
+	font-size: 50;
+}
