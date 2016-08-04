@@ -1,15 +1,25 @@
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
 var spawnedPokemon = "";
 var halfwayDistance = 0;
 var pokemonIds = ["squirtle", "charmander", "bulbasaur", "pikachu"];
 var score = 0;
 var highscore = 0;
 
+// function drawScore() {
+//     ctx.font = "16px Arial";
+//     ctx.fillStyle = "#0095DD";
+//     ctx.fillText("Score: "+score, 8, 20);
+// }
+
 function setupHandlers() {
-	$('#gameOver').hide();
 	$('#squirtle').hide();
 	$('#bulbasaur').hide();
 	$('#pikachu').hide();
 	$('#charmander').hide();
+	document.getElementById("score").innerHTML = score;
+	document.getElementById("highscore").innerHTML = highscore;
 	pokemonSpawn();
 	var position = $('#' + spawnedPokemon).position()
 	document.body.onkeyup = function(e){
@@ -27,11 +37,9 @@ function pokemonSpawn(){
 	spawnedPokemon = thisID;
 	console.log(thisID);
 	$("#" + spawnedPokemon).show()
-		// thisID.className = 'show';
    	$("#" + thisID).animate({left: "-=2000"}, 3000);
-  	// setTimeout(pokemonSpawn, Math.floor(Math.random() * (2000)))
-   	 // }
    	 setTimeout(pokemonRespawn,3000);
+   	 
 
 }
 
@@ -39,8 +47,10 @@ function pokemonRespawn(){
 	$("#" + spawnedPokemon).hide()
    	$("#" + spawnedPokemon).animate({left: "+=2000"}, 1);
    	setTimeout(pokemonSpawn, Math.floor(Math.random() * (300)));
+   	
 
 }
+
 
 function ashJump(){
 	$("#ash").animate({top: "-=300"}, 200);
@@ -50,7 +60,7 @@ function ashJump(){
 }
 
 function pokeballFire(){
-	$('h1').hide();
+	$('#controls').hide();
 	var position = $('#' + spawnedPokemon).position()
 	console.log(position.left);
 	halfwayDistance = (position.left - 10)/2;
@@ -58,7 +68,15 @@ function pokeballFire(){
 	setTimeout(catchPokemon, halfwayTime);
 	var ball = document.getElementById("pokeball");
 	$("#pokeball").animate({left: "+=1500"}, 1550);
+	if(($("#" + spawnedPokemon).is(":visible"))){
+		score++;
+	}
+
 	
+}
+
+function printScore(){
+	document.getElementById("score").innerHTML = "Score: " + score;
 }
 
 function pokeballRespawn(){
@@ -73,23 +91,34 @@ function catchPokemon(){
 	$('#pokeball').hide();
 	console.log($('#pokeball'))
 	pokeballRespawn();
-	// score = score + 1;
+
+	console.log(score);
+	document.getElementById("score").innerHTML = score;
 }
 
 function pokemonTouch(){
-	if(($("#" + spawnedPokemon).is(":visible"))){
+	if($("#" + spawnedPokemon).is(":visible") && $("#ash").is(":visible")){
 		console.log(spawnedPokemon);
 		if($("#ash").position().top === 550){
 			console.log(Math.floor($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8));
 			console.log(Math.ceil($("#ash").offset().left));
 			if(($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left)) + 8 === Math.ceil($("#ash").offset().left)){
 				$('#gameOver').show();
-				$('#gameOver').animate({fontSize: 200},1500);
+				$('#gameOver').animate({fontSize: 250},1500);
 				$('#ash').hide();
 				$('#pokeball').hide();
+				if(score > highscore){
+					highscore = score;
+				}
+				console.log(highscore);
+				document.getElementById("highscore").innerHTML = highscore;
 			}
-		}
+		}else{
+			score = score + 2;
+			console.log(score);
+			document.getElementById("score").innerHTML = score;
 		}
 	}
+}
 
 $(document).ready(setupHandlers);

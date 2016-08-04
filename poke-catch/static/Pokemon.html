@@ -1,6 +1,10 @@
 <link href="pokemon.css" type="text/css" rel="stylesheet">
-<h1>Controls: Spacebar to throw pokeball. Up arrow to jump.</h1>
-<h2 id = gameOver>GAME OVER.</h2>
+<h1 id = 'controls'>Controls: Spacebar to throw pokeball. Up arrow to jump.</h1>
+<h1>Highscore</h1>
+<h1 id = "highscore"> </h1>
+<h1>Score</h1>
+<h1 id = "score"></h1>
+<h2 id = "gameOver" class = "hidden">GAME OVER.</h2>
 <div class = "background">
 <body background="images/background.png">
 </div>
@@ -13,8 +17,10 @@
 <img id = "bulbasaur" class = "pokemon"  src = "images/Bulbasaur.png">
 <img id = "charmander" class = "pokemon"  src = "images/Charmander.png">
 <img id = "pikachu" class = "pokemon"   src = "Images/Pickachu.png">
-<p> Highscore: <script> document.write(highScore)</script></p>
-<p> Score: <script> document.write(score)</script></p>
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+
+
 
 <audio src="pokemon8bittheme.mp3" autoplay loop></audio>
 
