@@ -16,6 +16,7 @@
 #
 from google.appengine.api import users
 import webapp2
+from PokeScore import UserScore
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -25,13 +26,21 @@ class MainPage(webapp2.RequestHandler):
                 (user.nickname(), users.create_logout_url('/')))
             print "Location:https://www.google.com/\r\n"
         else:
-            greeting = ('<a href="%s">Sign in or register</a>.' %
+            greeting = ('<a href="%s">Create a Username</a>.' %
             users.create_login_url('/static/Pokemon.html'))
 
         self.response.out.write('<html><body>%s</body></html>' % greeting)
 
+class HighScoreHandler(webapp2.RequestHandler):
+    def get(self):
+        user_score_query= UserScore.query().order(-UserScore.points)
+        user_scores=user_score_query.fetch(limit = 10)
+        self.response.out.write(user_scores)
+
+
+
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage)
-  
+    ('/', MainPage),
+    ('/HighScore', HighScoreHandler)  
 ], debug=True)
