@@ -80,7 +80,9 @@ function pokemonTouch(){
 	if(($("#" + spawnedPokemon).is(":visible"))){
 		console.log(spawnedPokemon);
 		if($("#ash").position().top === 550){
-			if($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8 === $("#ash").offset().left){
+			console.log(Math.floor($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8));
+			console.log(Math.ceil($("#ash").offset().left));
+			if(($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left)) + 8 === Math.ceil($("#ash").offset().left)){
 				$('#gameOver').show();
 				$('#gameOver').animate({fontSize: 200},1500);
 				$('#ash').hide();
