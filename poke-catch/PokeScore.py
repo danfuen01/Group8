@@ -2,17 +2,11 @@ from google.appengine.ext import ndb
 
 class UserScore(ndb.Model):
 	points = ndb.IntegerProperty(required=True)
-	username = ndb.StringProperty(required=True)
+	username = ndb.StringProperty(required=False)
+	
 
 
 
-
-
-
-def getscore():
-	score=o
-	return score
-	print score
 
 
 

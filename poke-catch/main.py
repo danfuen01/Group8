@@ -13,34 +13,37 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-from google.appengine.api import users
+    
+
 import webapp2
+import jinja2
 from PokeScore import UserScore
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        if user:
-            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                (user.nickname(), users.create_logout_url('/')))
-            print "Location:https://www.google.com/\r\n"
-        else:
-            greeting = ('<a href="%s">Create a Username</a>.' %
-            users.create_login_url('/static/Pokemon.html'))
+env = jinja2.Environment(loader=jinja2.FileSystemLoader("template"))
 
-        self.response.out.write('<html><body>%s</body></html>' % greeting)
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        user_template = env.get_template('username.html')
+        self.response.out.write(user_template.render())
+
+    def post(self):
+        template=env.get_template("Pokemon.html")
+        self.response.write(template.render())
+ 
 
 class HighScoreHandler(webapp2.RequestHandler):
     def get(self):
-        user_score_query= UserScore.query().order(-UserScore.points)
-        user_scores=user_score_query.fetch(limit = 10)
-        self.response.out.write(user_scores)
+        User_name= self.request.get("users")
+        User_Score=self.request.get("score")
+        self.response.out.write(" your score is:"+ User_Score)
+        print(User_Score)
+        S = UserScore(points=int(User_Score), username= User_name)
+        S.put()
 
 
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/HighScore', HighScoreHandler)  
+    ('/', MainHandler),
+    ('/savescore', HighScoreHandler)  
 ], debug=True)

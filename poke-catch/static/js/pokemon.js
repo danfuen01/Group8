@@ -1,5 +1,6 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+var username="newUser"
 
 var spawnedPokemon = "";
 var halfwayDistance = 0;
@@ -19,6 +20,7 @@ function setupHandlers() {
 	$('#pikachu').hide();
 	$('#charmander').hide();
 	document.getElementById("score").innerHTML = score;
+
 	document.getElementById("highscore").innerHTML = highscore;
 	pokemonSpawn();
 	var position = $('#' + spawnedPokemon).position()
@@ -77,6 +79,7 @@ function pokeballFire(){
 
 function printScore(){
 	document.getElementById("score").innerHTML = "Score: " + score;
+
 }
 
 function pokeballRespawn(){
@@ -115,8 +118,14 @@ function pokemonTouch(){
 			}
 		}else{
 			score = score + 2;
+
 			console.log(score);
 			document.getElementById("score").innerHTML = score;
+
+			$("#SaveScore","#users").attr("href", "/savescore?score="+ score+"&users=" + username) 
+			
+
+
 		}
 	}
 }
