@@ -6,7 +6,6 @@ var spawnedPokemon = "";
 var halfwayDistance = 0;
 var pokemonIds = ["squirtle", "charmander", "bulbasaur", "pikachu"];
 var score = 0;
-var highscore = 0;
 
 // function drawScore() {
 //     ctx.font = "16px Arial";
@@ -20,8 +19,6 @@ function setupHandlers() {
 	$('#pikachu').hide();
 	$('#charmander').hide();
 	document.getElementById("score").innerHTML = score;
-
-	document.getElementById("highscore").innerHTML = highscore;
 	pokemonSpawn();
 	var position = $('#' + spawnedPokemon).position()
 	document.body.onkeyup = function(e){
@@ -100,32 +97,29 @@ function catchPokemon(){
 }
 
 function pokemonTouch(){
+	console.log("POKETOUCH");
 	if($("#" + spawnedPokemon).is(":visible") && $("#ash").is(":visible")){
+		console.log("POKETOUCH MAYBE HIT");
 		console.log(spawnedPokemon);
-		if($("#ash").position().top === 550){
+		console.log(Math.ceil($("#ash").position()));
+		if(Math.ceil($("#ash").position().top) === 550){
+			console.log("HIT!");
 			console.log(Math.floor($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left) + 8));
 			console.log(Math.ceil($("#ash").offset().left));
 			if(($("#" + spawnedPokemon).offset().left - ($("#" + spawnedPokemon).offset().left)) + 8 === Math.ceil($("#ash").offset().left)){
 				$('#gameOver').show();
+				var current_link = $("#SaveScore").attr("href");
+				$("#SaveScore").attr("href", current_link+"&score="+score) 
+			
 				$('#gameOver').animate({fontSize: 250},1500);
 				$('#ash').hide();
 				$('#pokeball').hide();
-				if(score > highscore){
-					highscore = score;
-				}
-				console.log(highscore);
-				document.getElementById("highscore").innerHTML = highscore;
 			}
 		}else{
 			score = score + 2;
 
 			console.log(score);
 			document.getElementById("score").innerHTML = score;
-
-			$("#SaveScore","#users").attr("href", "/savescore?score="+ score+"&users=" + username) 
-			
-
-
 		}
 	}
 }

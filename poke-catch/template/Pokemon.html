@@ -5,9 +5,6 @@
 
 
 
-
-<a id="SaveScore" href="/savescore" > Save Score </a>
-
 <h1 id = "score"></h1>
 
 
@@ -15,7 +12,7 @@
 
 <h1>Highscore</h1>
 
-<h1 id = "highscore"> </h1>
+<h1 id = "highscore"> {{highscore}}</h1>
 <h1>Score</h1>
 
 
@@ -26,7 +23,10 @@
 
 
 
-<h2 id = "gameOver" class = "hidden">GAME OVER.</h2>
+<h2 id = "gameOver" class = "hidden">
+GAME OVER.
+<a id="SaveScore" href="/savescore?user={{user}}" > Save Score </a>
+</h2>
 <div class = "background">
 <body background="/static/Images/background.png">
 </div>

@@ -28,7 +28,12 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         template=env.get_template("Pokemon.html")
-        self.response.write(template.render())
+        highscore = 10
+        template_data = {
+            'user': self.request.get("user"),
+            'highscore': highscore
+        }
+        self.response.write(template.render(template_data))
  
 
 class HighScoreHandler(webapp2.RequestHandler):
