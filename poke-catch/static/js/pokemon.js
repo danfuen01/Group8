@@ -111,7 +111,7 @@ function pokemonTouch(){
 				var current_link = $("#SaveScore").attr("href");
 				$("#SaveScore").attr("href", current_link+"&score="+score) 
 			
-				$('#gameOver').animate({fontSize: 250},1500);
+				$('#gameOver').animate({fontSize: 48},1500);
 				$('#ash').hide();
 				$('#pokeball').hide();
 			}
