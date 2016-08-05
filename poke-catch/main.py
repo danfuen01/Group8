@@ -28,7 +28,13 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         template=env.get_template("Pokemon.html")
-        highscore = 10
+        highscoreQuery = UserScore.query().filter(UserScore.username== self.request.get("user")).order(-UserScore.points)
+        highscore_fetch =highscoreQuery.fetch(limit=1)
+        if not highscore_fetch:
+            highscore = 0
+        else:
+            highscore = highscore_fetch[0].points
+        
         template_data = {
             'user': self.request.get("user"),
             'highscore': highscore
@@ -38,12 +44,13 @@ class MainHandler(webapp2.RequestHandler):
 
 class HighScoreHandler(webapp2.RequestHandler):
     def get(self):
-        User_name= self.request.get("users")
+        User_name= self.request.get("user")
         User_Score=self.request.get("score")
-        self.response.out.write(" your score is:"+ User_Score)
-        print(User_Score)
         S = UserScore(points=int(User_Score), username= User_name)
         S.put()
+        self.redirect("/")
+
+
 
 
 
